@@ -1,0 +1,272 @@
+/**
+style.css
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-items ul {
+    display: flex;
+}
+
+.nav-items li {
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-items li:hover {
+    color: #ff6347;
+    /* tomato color */
+}
+
+.body-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    width: 40%;
+}
+
+.search input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.search button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search button:hover {
+    background-color: #e5533d;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.res-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+.res-card img.res-logo {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.res-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.shimmer-card {
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    animation: shimmer 1.5s infinite;
+}
+
+.shimmer-img {
+    width: 100%;
+    height: 120px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.shimmer-text {
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.shimmer-title {
+    width: 80%;
+}
+
+.shimmer-rating {
+    width: 50%;
+}
+
+.shimmer-cuisine {
+    width: 90%;
+}
+
+.shimmer-cost {
+    width: 40%;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+/* Center the main container */
+.restaurant-info-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    background-color: #f2f4f8;
+    min-height: 100vh;
+  }
+  
+  /* Card-like box for restaurant details */
+  .restaurant-info-box {
+    width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Headings and labels */
+  .restaurant-info-box h3 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-info-box h4 {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #2980b9;
+  }
+  
+  /* Text styling */
+  p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .muted {
+    color: #666;
+  }
+  
+  /* Accordion styles */
+  .accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .accordion-header {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #ecf0f1;
+    transition: background-color 0.2s;
+  }
+  
+  .accordion-header:hover {
+    background-color: #d0e8ff;
+  }
+  
+  .dish-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #34495e;
+  }
+  
+  .accordion-body {
+    padding: 10px;
+    background-color: #fafafa;
+    font-size: 13px;
+    color: #444;
+    border-top: 1px solid #ddd;
+  }
+
+  .card-from-function {
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card-from-function:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-from-function h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 1.4em;
+  }
+  
+  .card-from-function p {
+    margin: 6px 0;
+    color: #555;
+    font-size: 1em;
+  }
+  
+  .card-from-function p strong {
+    color: #1abc9c;
+  }
+  */
+  
