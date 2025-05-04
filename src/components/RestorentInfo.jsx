@@ -3,9 +3,16 @@ import { useParams } from "react-router";
 import { ShimmerCard } from "./ShimmerCard";
 import useRestaurantsInfo from "../utils/useRestaurants";
 const Restaurantsinfo = () => {
+  const [openCategoryIndex, setOpenCategoryIndex] = useState(null);
+
   const [openDishId, setOpenDishId] = useState(null);
 
-  const toggleAccordion = (id) => {
+  const toggleCategory = (index) => {
+    setOpenCategoryIndex(openCategoryIndex === index ? null : index);
+    setOpenDishId(null); // Reset open dish when category changes
+  };
+
+  const toggleDish = (id) => {
     setOpenDishId(openDishId === id ? null : id);
   };
   const { resid } = useParams();
@@ -22,53 +29,91 @@ const Restaurantsinfo = () => {
   const itemCards =
     resInfo?.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
       ?.card?.itemCards;
+  let tempItemCards =
+    resInfo?.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (ele) =>
+        ele.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+    );
+  console.log(tempItemCards);
+
   const cuisineList = cuisines?.join(", ");
 
   return (
-    <div className="p-6 flex justify-center bg-gray-50 min-h-screen">
-      <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-2xl">
-        <h3 className="text-2xl font-semibold mb-2">{name}</h3>
-        <p className="text-gray-600 mb-1">
-          <strong>Cuisines:</strong> {cuisineList}
-        </p>
-        <p className="text-gray-600 mb-1">
-          <strong>Cost for Two:</strong> {costForTwoMessage}
-        </p>
-        <p className="text-gray-600 mb-4">
-          <strong>Rating:</strong> {avgRating} ⭐
-        </p>
-
-        <h4 className="text-xl font-semibold mb-3">Menu</h4>
-        <div className="space-y-4">
-          {itemCards?.map((item) => {
-            const dish = item.card.info;
-            return (
+    <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+      <div className="max-w-2xl mx-auto">
+        {tempItemCards.map((category, index) => {
+          const catData = category.card.card;
+  
+          return (
+            <div
+              key={catData.categoryId}
+              className="mb-5 border border-gray-300 shadow-md rounded-xl overflow-hidden bg-white"
+            >
+              {/* Category Header */}
               <div
-                key={dish.id}
-                className="border border-gray-200 rounded-md overflow-hidden"
+                className="bg-indigo-100 px-5 py-4 cursor-pointer hover:bg-indigo-200 transition-colors"
+                onClick={() => toggleCategory(index)}
               >
-                <div
-                  className="bg-gray-100 px-4 py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => toggleAccordion(dish.id)}
-                >
-                  <p className="text-md font-medium">{dish.name}</p>
+                <div className="flex justify-between items-center">
+                  <h2 className="text-xl font-semibold text-indigo-800">
+                    {catData.title}
+                  </h2>
+                  <span className="text-indigo-600 text-lg">
+                    {openCategoryIndex === index ? "▲" : "▼"}
+                  </span>
                 </div>
-                {openDishId === dish.id && (
-                  <div className="px-4 py-3 bg-white text-gray-700">
-                    <p className="mb-2">
-                      {dish.description || "No description available."}
-                    </p>
-                    <p className="font-semibold">
-                      ₹{(dish.price || dish.defaultPrice) / 100}
-                    </p>
-                  </div>
-                )}
               </div>
-            );
-          })}
-        </div>
+  
+              {/* Category Content */}
+              {openCategoryIndex === index && (
+                <div className="bg-white px-5 py-4 space-y-4">
+                  {catData.categories.map((subCat) =>
+                    subCat.itemCards?.map((item) => {
+                      const dish = item.card.info;
+                      return (
+                        <div
+                          key={dish.id}
+                          className="border border-gray-200 rounded-lg shadow-sm"
+                        >
+                          {/* Dish Header */}
+                          <div
+                            className="bg-gray-100 px-4 py-2 cursor-pointer hover:bg-gray-200 transition"
+                            onClick={() => toggleDish(dish.id)}
+                          >
+                            <div className="flex justify-between items-center">
+                              <p className="text-base font-medium text-gray-800">
+                                🍽️ {dish.name}
+                              </p>
+                              <span className="text-gray-500 text-sm">
+                                {openDishId === dish.id ? "▲" : "▼"}
+                              </span>
+                            </div>
+                          </div>
+  
+                          {/* Dish Content */}
+                          {openDishId === dish.id && (
+                            <div className="px-4 py-3 bg-white text-gray-700">
+                              <p className="mb-2 italic text-sm">
+                                {dish.description || "No description available."}
+                              </p>
+                              <p className="font-semibold text-green-700">
+                                ₹{(dish.price || dish.defaultPrice) / 100}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
+  
 };
 export default Restaurantsinfo;
