@@ -29,4 +29,6 @@ coverage/
 *.swp
 *.swo
 *.tmp
+.cache/
+.parcel-cache/
 
