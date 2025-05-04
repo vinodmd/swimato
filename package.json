@@ -1,0 +1,36 @@
+{
+  "name": "eps-2",
+  "version": "1.0.0",
+  "description": "namaste react",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel  build index.html",
+    "test": "jest",
+    "dev": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "yes"
+  },
+  "keywords": [
+    "vinod",
+    "namaste",
+    "react"
+  ],
+  "author": "unstable_athma",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.5",
+    "dom": "^0.0.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^6.17.0",
+    "react-router-dom": "^6.30.0",
+    "router": "^2.2.0",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "parcel": "^2.14.4"
+  }
+}
