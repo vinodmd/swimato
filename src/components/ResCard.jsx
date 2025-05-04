@@ -28,15 +28,16 @@ export default function ResCard({ data }) {
   );
 }
 
-export function promotedResCard(ResCard) {
-  return (props) => {
+
+export const promoteResCard =(ResCard)=>{
+  return (props)=>{
     return (
       <div className="relative">
-        <span className="absolute top-2 left-2 bg-yellow-950 text-amber-50 text-xs font-semibold px-2 py-1 rounded shadow-md z-10">
+        <span className="absolute top-2 left-2 bg-yellow-400 text-black text-xs font-semibold px-2 py-1 rounded shadow-md z-10">
           PROMOTED
         </span>
         <ResCard {...props} />
       </div>
     );
-  };
+  }
 }

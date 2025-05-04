@@ -23,8 +23,6 @@ class CardClass extends React.Component {
   }
 
   render() {
-    // console.log("child render");
-
     return (
       <div className="max-w-sm mx-auto bg-white shadow-lg rounded-xl p-6 mt-6">
         <h3 className="text-xl font-semibold mb-2">
@@ -32,7 +30,7 @@ class CardClass extends React.Component {
         </h3>
         <p className="text-gray-700 mb-1">
           <strong>Location:</strong>{" "}
-          {this.state.userInfo.location ? this.state.userInfo.location : "default"}
+          {/* {this.state.userInfo.location ? this.state.userInfo.location : "default"} */}
         </p>
         <p className="text-gray-700">
           <strong>Instagram:</strong> @{this.props.instagram?.toLowerCase()}

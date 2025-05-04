@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ResCard ,{promotedResCard } from "./ResCard";
+import ResCard, { promotedResCard, promoteResCard } from "./ResCard";
 import { ShimmerCard } from "./ShimmerCard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
 export function BodyComponent() {
   let [RestaurantsLst, setRestaurantsLst] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [FilteredRestaurantsLst, setFilteredRestaurantsLst] = useState([]);
-
 
   useEffect(() => {
     fetchResturents();
@@ -24,23 +24,22 @@ export function BodyComponent() {
         jsonData?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
       console.log(extractedData);
-      
+
       setRestaurantsLst(extractedData);
-      setFilteredRestaurantsLst(extractedData)
+      setFilteredRestaurantsLst(extractedData);
     }
   };
-  const AddPromotedLable = promotedResCard(ResCard);
+  let AddpromoteResCard = promoteResCard(ResCard)
   let serachBasedOnText = () => {
     const temp = RestaurantsLst.filter((restaurant) =>
       restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
-    );    
+    );
     setFilteredRestaurantsLst(temp);
   };
 
-
-  const onlineStatus  =  useOnlineStatus();
-  if(onlineStatus === false){
-    return <h3>Oop's something went wrong, Please check your internet.</h3>
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <h3>Oop's something went wrong, Please check your internet.</h3>;
   }
 
   // console.log("am from outside the body..!");
@@ -82,16 +81,15 @@ export function BodyComponent() {
           Top rated restaurants
         </button>
       </div>
-  
+
       {/* Restaurant Cards */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {FilteredRestaurantsLst.map((element) => (
-          <Link key={element.info.id} to={'/restoreInfo/' + element.info.id}>
-            {(element.info.avgRating <= 4.1) ? <AddPromotedLable data={element.info} />:<ResCard data={element.info} />}
+          <Link key={element.info.id} to={"/restoreInfo/" + element.info.id}>
+            {(element.info.avgRating < 4.1) ? <AddpromoteResCard data={element.info}/> : <ResCard data={element.info}/>}
           </Link>
         ))}
       </div>
     </div>
   );
-  
 }
